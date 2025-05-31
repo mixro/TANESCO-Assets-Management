@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add/Edit Asset</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="navbar-logo">
+        <img src="https://images.seeklogo.com/logo-png/31/1/tanesco-tanzania-electric-supply-company-limited-logo-png_seeklogo-311615.png" alt="TANESCO Logo">
+    </div>
+    <ul class="navbar-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/assets">Assets List</a></li>
+        <li><a href="/assets/new">Add Asset</a></li>
+    </ul>
+    <div class="navbar-profile">
+        <img src="https://www.pngplay.com/wp-content/uploads/12/User-Avatar-Profile-Transparent-Clip-Art-Background.png" alt="Profile Picture" class="profile-pic">
+    </div>
+</nav>
+<main class="container">
+    <h1>Add/Edit Asset</h1>
+    <form th:action="@{/assets}" th:object="${asset}" method="post" class="asset-form">
+        <input type="hidden" th:field="*{id}">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}" required>
+        </div>
+        <div class="form-group">
+            <label for="type">Type:</label>
+            <select id="type" th:field="*{type}" required>
+                <option value="Transformer">Transformer</option>
+                <option value="Substation">Substation</option>
+                <option value="Transmission Line">Transmission Line</option>
+                <option value="Meter">Meter</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="location">Location:</label>
+            <input type="text" id="location" th:field="*{location}">
+        </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <select id="status" th:field="*{status}">
+                <option value="Operational">Operational</option>
+                <option value="Under Maintenance">Under Maintenance</option>
+                <option value="Faulty">Faulty</option>
+                <option value="Decommissioned">Decommissioned</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="installationDate">Installation Date:</label>
+            <input type="date" id="installationDate" th:field="*{installationDate}">
+        </div>
+        <div class="form-group">
+            <label for="capacity">Capacity (e.g., 500 kVA, 33 kV):</label>
+            <input type="text" id="capacity" th:field="*{capacity}">
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="/assets" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</main>
+</body>
+</html>
